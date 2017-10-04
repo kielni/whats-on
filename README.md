@@ -5,8 +5,10 @@ Display list of TV shows, from longest-ago watched to most recent.
 Swipe to set watched to today and show to the end of the list. Double tap to undo.
 
 Get data from <a href="https://firebase.google.com/">Firebase</a> via
-<a href="https://github.com/vuejs/vuefire">VueFire and display with
-<a href="https://vuejs.org/">Vue.js</a>. Get swipe and double tap events with
+<a href="https://github.com/vuejs/vuefire">VueFire</a> and display with
+<a href="https://vuejs.org/">Vue.js</a> and
+<a href="http://getbootstrap.com/docs/3.3/">Boostrap 3</a>.
+Get swipe and double tap events with
 <a href="http://hammerjs.github.io/">hammer.js</a>
 
 Sample Firebase data
