@@ -1,0 +1,22 @@
+{
+  "name": "whats-on",
+  "version": "1.0.0",
+  "description": "Get TV show queue from Firebase",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kielni/whats-on.git"
+  },
+  "author": "Kimberly Nicholls",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kielni/whats-on/issues"
+  },
+  "homepage": "https://github.com/kielni/whats-on#readme",
+  "dependencies": {
+    "vue2-hammer": "^1.0.4"
+  }
+}
