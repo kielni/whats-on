@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/kielni/whats-on#readme",
   "dependencies": {
-    "vue2-hammer": "^1.0.4"
+    "alloyfinger": "^0.1.16",
   }
 }

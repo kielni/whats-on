@@ -1,19 +1,7 @@
 /* global config, firebase, Vue, _, $, moment */
 var db = firebase.initializeApp(config.firebase).database();
 
-Vue.directive('gesture', {
-  inserted: function (el, binding) {
-    const hammertime = new Hammer(el);
-    hammertime.on('swipe', function(ev) {
-      //$('#action').text('swipe '+$(ev.target).closest('.show-card').attr('data'));
-      binding.value(el, 'swipe');
-    });
-    hammertime.on('doubletap', function(ev) {
-      //$('#action').text('doubletap '+$(ev.target).closest('.show-card').attr('data'));
-      binding.value(el, 'doubletap');
-    });
-  }
-});
+Vue.use(AlloyFingerVue);
 
 // use vm for console debugging
 // eslint-disable-next-line no-unused-vars
@@ -38,22 +26,23 @@ var vm = new Vue({
   },
 
   methods: {
-    gesture: function(ev, evType) {
-      const showId = $(ev).attr('data');
-      //$('#action').append(` | gesture ${evType} ${showId}`);
-      if (evType === 'swipe') {
-        const was = this.ref.shows[showId].watched;
-        this.$firebaseRefs.ref.child(`shows/${showId}/watchedPrev`).set(was);
-        this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(moment().format('YYYY-MM-DD'));
+    swipe: function(ev) {
+      const showId =  $(ev.target).closest('.show-card').attr('data');
+      const was = this.ref.shows[showId].watched;
+
+      this.$firebaseRefs.ref.child(`shows/${showId}/watchedPrev`).set(was);
+      this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(moment().format('YYYY-MM-DD'));
+    },
+
+    doubleTap: function(ev) {
+      // undo
+      const showId = $(ev.target).closest('.show-card').attr('data')
+      const prev = this.ref.shows[showId].watchedPrev;
+
+      if (prev) {
+        this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(prev);
       }
-      if (evType === 'doubletap') {
-        // undo
-        const prev = this.ref.shows[showId].watchedPrev;
-        if (prev) {
-          this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(prev);
-        }
-      }
-    }
+    },
   },
 
   computed: {
