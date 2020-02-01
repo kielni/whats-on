@@ -29,6 +29,11 @@ var vm = new Vue({
     swipe: function(ev) {
       const showId =  $(ev.target).closest('.show-card').attr('data');
       const was = this.ref.shows[showId].watched;
+      const direction = ev.direction;
+
+      if (!(direction === 'Left' || direction === 'Right')) {
+        return;
+      }
 
       this.$firebaseRefs.ref.child(`shows/${showId}/watchedPrev`).set(was);
       this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(moment().format('YYYY-MM-DD'));
