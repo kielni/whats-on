@@ -39,12 +39,13 @@ var vm = new Vue({
       this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(moment().format('YYYY-MM-DD'));
     },
 
-    doubleTap: function(ev) {
+    undo: function(ev) {
       // undo
       const showId = $(ev.target).closest('.show-card').attr('data')
       const prev = this.ref.shows[showId].watchedPrev;
 
       if (prev) {
+        console.log(`undo: ${showId} to ${prev}`);
         this.$firebaseRefs.ref.child(`shows/${showId}/watched`).set(prev);
       }
     },

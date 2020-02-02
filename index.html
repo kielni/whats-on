@@ -26,7 +26,7 @@
     <div class="row">
       <template v-if="loadedShows">
         <template v-for="show in sortedShows">
-          <div v-finger:swipe="swipe" v-finger:double-tap="doubleTap">
+          <div v-finger:swipe="swipe" v-finger:tap="undo" v-finger:longTap="undo" class="swipeable">
             <div class="col-md-4 col-sm-12 show-card" v-bind:data="show.id">
               <div class="watched">last watched {{show.prettyDate}}</div>
               <img v-if="show.img" v-bind:src="show.img" class="img-rounded img-responsive">
