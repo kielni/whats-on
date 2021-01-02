@@ -1,5 +1,12 @@
 /* global config, firebase, Vue, _, $, moment */
 var db = firebase.initializeApp(config.firebase).database();
+firebase.auth().signInAnonymously()
+  .then(() => {
+    console.log('signInAnonymously ok')
+  })
+  .catch((error) => {
+    console.log('signInAnonymously error: ', error);
+  });
 
 Vue.use(AlloyFingerVue);
 
