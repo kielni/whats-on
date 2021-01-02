@@ -1,8 +1,12 @@
 /* global config, firebase, Vue, _, $, moment */
-var db = firebase.initializeApp(config.firebase).database();
+var fb = firebase.initializeApp(config.firebase);
+var db = fb.database();
+console.log('create database');
+
 firebase.auth().signInAnonymously()
   .then(() => {
     console.log('signInAnonymously ok')
+    db = fb.database();
   })
   .catch((error) => {
     console.log('signInAnonymously error: ', error);
@@ -17,6 +21,7 @@ var vm = new Vue({
 
   data: {
     shows: [],
+    ref: {},
   },
 
   firebase: {
